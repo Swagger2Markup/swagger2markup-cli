@@ -1,5 +1,5 @@
-group 'me.ledin'
-version '0.0.1'
+group 'io.github.robwin'
+version '0.9.1'
 
 apply plugin: 'java'
 
@@ -19,9 +19,8 @@ jar {
     manifest {
         attributes(
                 'Implementation-Title': 'Swagger2Markup Cli',
-                'Implementation-Vendor': 'ledin.me',
                 'Implementation-Version': version,
-                'Main-Class': 'me.ledin.swagger2markup.Application'
+                'Main-Class': 'io.github.robwin.swagger2markup.Application'
         )
     }
     

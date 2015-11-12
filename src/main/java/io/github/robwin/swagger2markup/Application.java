@@ -1,8 +1,7 @@
-package me.ledin.swagger2markup;
+package io.github.robwin.swagger2markup;
 
 import io.airlift.airline.*;
 import io.github.robwin.markup.builder.MarkupLanguage;
-import io.github.robwin.swagger2markup.Swagger2MarkupConverter;
 
 import java.io.IOException;
 
@@ -28,8 +27,11 @@ public class Application {
 
     @Command(name = "generate", description = "Generate")
     public static class Generate extends BaseCommand {
-        public static final String ASCIIDOC = "asciidoc";
-        public static final String MARKDOWN = "markdown";
+        public static final String ASCIIDOC = "ASCIIDOC";
+        public static final String MARKDOWN = "MARKDOWN";
+        public static final String AS_IS = "AS_IS";
+        public static final String NATURAL = "NATURAL";
+        public static final String TAGS = "TAGS";
 
         @Option(name = "-i", required = true, description = "Input file")
         public String inputFile;
@@ -39,6 +41,12 @@ public class Application {
 
         @Option(name = "-l", required = true, allowedValues = {ASCIIDOC, MARKDOWN}, description = "Markup language")
         public String language;
+
+        @Option(name = "-g", allowedValues = {AS_IS, TAGS}, description = "Specifies if the paths should be grouped by tags or stay as-is")
+        public String pathsGroupedBy;
+
+        @Option(name = "-n", allowedValues = {AS_IS, NATURAL}, description = "Specifies if the definitions should be ordered by natural ordering or stay as-is")
+        public String definitionsOrderedBy;
 
         @Option(name = "-d", description = "Include hand-written descriptions into the Paths and Definitions document")
         public String descriptionsPath;
@@ -55,12 +63,25 @@ public class Application {
         @Override
         public void run() {
             try {
-                Swagger2MarkupConverter.Builder builder = Swagger2MarkupConverter.from(inputFile)
-                        .withMarkupLanguage(MarkupLanguage.valueOf(language.toUpperCase()))
-                        .withDescriptions(descriptionsPath)
-                        .withExamples(examplesPath)
-                        .withSchemas(schemasPath);
-                if (separateDefinitions) {
+                final Swagger2MarkupConverter.Builder builder = Swagger2MarkupConverter
+                        .from(inputFile)
+                        .withMarkupLanguage(MarkupLanguage.valueOf(language.toUpperCase()));
+                if(pathsGroupedBy != null){
+                    builder.withPathsGroupedBy(GroupBy.valueOf(pathsGroupedBy.toUpperCase()));
+                }
+                if(definitionsOrderedBy != null){
+                    builder.withDefinitionsOrderedBy(OrderBy.valueOf(definitionsOrderedBy.toUpperCase()));
+                }
+                if(examplesPath != null){
+                    builder.withExamples(examplesPath);
+                }
+                if(descriptionsPath != null){
+                    builder.withDescriptions(descriptionsPath);
+                }
+                if(schemasPath != null){
+                    builder.withSchemas(schemasPath);
+                }
+                if(separateDefinitions) {
                     builder.withSeparatedDefinitions();
                 }
                 builder.build().intoFolder(outputPath);

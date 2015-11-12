@@ -8,55 +8,8 @@ Command line interface (CLI) for Swagger2Markup
 This is CLI for [Swagger2Markup](https://github.com/Swagger2Markup/swagger2markup).
 It converts a Swagger JSON or YAML file into several AsciiDoc or GitHub Flavored Markdown documents which can be combined with hand-written documentation. The Swagger source file can be located locally or remotely via HTTP. Swagger2Markup supports the Swagger 1.2 and 2.0 specification.
 
-## Prerequisites
-
-You need Java 7+.
-
-## Building
-
-After cloning the project you can build it from source with command:
-
-`./gradlew build`
-
-## Usage
-
-`java -jar build/libs/swagger2markup-cli-x.x.x.jar help generate`
-
-```
-NAME
-        swagger2markup generate - Generate
-
-SYNOPSIS
-        swagger2markup [-v] generate [-d <descriptionsPath>] [-e <examplesPath>]
-                -i <inputFile> -l <language> -o <outputPath> [-p] [-s <schemasPath>]
-
-OPTIONS
-        -d <descriptionsPath>
-            Include hand-written descriptions into the Paths and Definitions
-            document
-
-        -e <examplesPath>
-            Include examples into the Paths document
-
-        -i <inputFile>
-            Input file
-
-        -l <language>
-            Markup language
-
-        -o <outputPath>
-            Output path
-
-        -p
-            In addition to the definitions file, also create separate definition
-            files for each model definition.
-
-        -s <schemasPath>
-            Include (JSON, XML) schemas into the Definitions document
-
-        -v
-            Verbose mode
-```
+## Reference documentation
+- [Reference Documentation](http://swagger2markup.readme.io/)
 
 ## License
 
