@@ -41,7 +41,7 @@ bintray {
         websiteUrl = 'https://github.com/Swagger2Markup/swagger2markup-cli'
         issueTrackerUrl = 'https://github.com/Swagger2Markup/swagger2markup-cli/issues'
         vcsUrl = 'https://github.com/Swagger2Markup/swagger2markup-cli.git'
-        desc = 'A Swagger to Markup (AsciiDoc and Markdown) converter Gradle Plugin.'
+        desc = 'A Command line Interface (CLI) for Swagger2Markup.'
         licenses = ['Apache-2.0']
         version {
             vcsTag = project.version
@@ -77,7 +77,7 @@ publishing {
                 root.appendNode('name', 'swagger2markup-cli')
                 root.appendNode('packaging', 'jar')
                 root.appendNode('url', 'https://github.com/Swagger2Markup/swagger2markup-cli')
-                root.appendNode('description', 'A Swagger to Markup (AsciiDoc and Markdown) converter Gradle Plugin.')
+                root.appendNode('description', 'A Command line Interface (CLI) for Swagger2Markup.')
 
                 def license = root.appendNode('licenses').appendNode('license')
                 license.appendNode('name', 'Apache-2.0')
