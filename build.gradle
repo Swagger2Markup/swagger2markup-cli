@@ -1,7 +1,23 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+        //classpath "com.gradle.publish:plugin-publish-plugin:0.9.0"
+    }
+}
+
 group 'io.github.robwin'
 version '0.9.1'
 
 apply plugin: 'java'
+apply plugin: 'com.jfrog.bintray'
+apply from: 'gradle/publishing.gradle'
 
 sourceCompatibility = 1.7
 
@@ -25,4 +41,23 @@ jar {
     }
     
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
 }

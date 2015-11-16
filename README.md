@@ -5,7 +5,7 @@ Command line interface (CLI) for Swagger2Markup
 
 ## Overview
 
-This is CLI for [Swagger2Markup](https://github.com/Swagger2Markup/swagger2markup).
+This is a CLI for [Swagger2Markup](https://github.com/Swagger2Markup/swagger2markup).
 It converts a Swagger JSON or YAML file into several AsciiDoc or GitHub Flavored Markdown documents which can be combined with hand-written documentation. The Swagger source file can be located locally or remotely via HTTP. Swagger2Markup supports the Swagger 1.2 and 2.0 specification.
 
 ## Reference documentation
