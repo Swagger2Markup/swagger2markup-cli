@@ -18,9 +18,11 @@ jar {
                 'Specification-Title': projectArtifactId,
                 'Specification-Version': project.version,
                 'Implementation-Title': projectArtifactId,
-                'Implementation-Version': project.version
+                'Implementation-Version': project.version,
+                'Main-Class': 'io.github.robwin.swagger2markup.Application'
         )
     }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 if (!project.hasProperty('bintrayUsername')) ext.bintrayUsername = ''

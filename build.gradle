@@ -16,12 +16,20 @@ group 'io.github.robwin'
 version '0.9.1'
 
 apply plugin: 'java'
+apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 apply from: 'gradle/publishing.gradle'
 
-sourceCompatibility = 1.7
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+    options.deprecation = true
+    options.encoding = 'UTF-8'
+    options.compilerArgs << "-Xlint:unchecked"
+}
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -29,18 +37,6 @@ dependencies {
     compile 'io.github.robwin:swagger2markup:+'
     compile 'io.airlift:airline:+'
     testCompile group: 'junit', name: 'junit', version: '4.11'
-}
-
-jar {
-    manifest {
-        attributes(
-                'Implementation-Title': 'Swagger2Markup Cli',
-                'Implementation-Version': version,
-                'Main-Class': 'io.github.robwin.swagger2markup.Application'
-        )
-    }
-    
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
