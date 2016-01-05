@@ -32,6 +32,8 @@ public class Application {
         public static final String AS_IS = "AS_IS";
         public static final String NATURAL = "NATURAL";
         public static final String TAGS = "TAGS";
+        public static final String EN = "EN";
+        public static final String RU = "RU";
 
         @Option(name = "-i", required = true, description = "Input file")
         public String inputFile;
@@ -60,6 +62,9 @@ public class Application {
         @Option(name = "-p", description = "In addition to the definitions file, also create separate definition files for each model definition.")
         public boolean separateDefinitions;
 
+        @Option(name = "-m", allowedValues = {EN, RU}, description = "Language of labels in the output files")
+        public Language outputLanguage;
+
         @Override
         public void run() {
             try {
@@ -83,6 +88,9 @@ public class Application {
                 }
                 if(separateDefinitions) {
                     builder.withSeparatedDefinitions();
+                }
+                if(outputLanguage != null) {
+                    builder.withOutputLanguage(outputLanguage);
                 }
                 builder.build().intoFolder(outputPath);
             } catch (IOException e) {
