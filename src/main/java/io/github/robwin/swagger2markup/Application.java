@@ -3,7 +3,11 @@ package io.github.robwin.swagger2markup;
 import io.airlift.airline.*;
 import io.github.robwin.markup.builder.MarkupLanguage;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Application {
     public static void main(String[] args) {
@@ -34,6 +38,7 @@ public class Application {
         public static final String TAGS = "TAGS";
         public static final String EN = "EN";
         public static final String RU = "RU";
+        public static final String API = "api";
 
         @Option(name = "-i", required = true, description = "Input file")
         public String inputFile;
@@ -65,12 +70,16 @@ public class Application {
         @Option(name = "-m", allowedValues = {EN, RU}, description = "Language of labels in the output files")
         public Language outputLanguage;
 
+        @Option(name = "-sd", description = "Output as a single document")
+        public boolean singleDocument = false;
+
         @Override
         public void run() {
             try {
+                final MarkupLanguage markupLanguage = MarkupLanguage.valueOf(language.toUpperCase());
                 final Swagger2MarkupConverter.Builder builder = Swagger2MarkupConverter
                         .from(inputFile)
-                        .withMarkupLanguage(MarkupLanguage.valueOf(language.toUpperCase()));
+                        .withMarkupLanguage(markupLanguage);
                 if(pathsGroupedBy != null){
                     builder.withPathsGroupedBy(GroupBy.valueOf(pathsGroupedBy.toUpperCase()));
                 }
@@ -92,7 +101,29 @@ public class Application {
                 if(outputLanguage != null) {
                     builder.withOutputLanguage(outputLanguage);
                 }
-                builder.build().intoFolder(outputPath);
+
+                if (singleDocument) {
+                    // TODO: This should be replaced with Swagger2MarkupConverter.toFile
+                    // which is in the 1.0.0 version of Swagger2Markup
+                    Files.createDirectories(Paths.get(outputPath));
+                    StringBuilder sb = new StringBuilder(API);
+
+                    if (MarkupLanguage.ASCIIDOC.equals(markupLanguage)) {
+                        sb.append(".adoc");
+                    } else if (MarkupLanguage.MARKDOWN.equals(markupLanguage)) {
+                        sb.append(".md");
+                    } else{
+                        throw new UnsupportedOperationException("Unsupported markup language");
+                    }
+
+                    // Assuming UTF-8 because Swagger2Markup also makes the same assumption.
+                    try (BufferedWriter writer = Files.newBufferedWriter(
+                            Paths.get(outputPath, sb.toString()), StandardCharsets.UTF_8)){
+                        writer.write(builder.build().asString());
+                    }
+                } else {
+                    builder.build().intoFolder(outputPath);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
