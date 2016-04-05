@@ -38,8 +38,8 @@ public class Application implements Runnable{
     @Inject
     public HelpOption helpOption;
 
-    @Option(name = {"-i", "--input"}, required = true, description = "Swagger source. Can either be a URL or a file path.")
-    public String input;
+    @Option(name = {"-i", "--swaggerInput"}, required = true, description = "Swagger input. Can either be a URL or a file path.")
+    public String swaggerInput;
 
     @Option(name = {"-d", "--outputDir"}, description = "Output directory. Converts the Swagger specification into multiple files.")
     public String outputDir;
@@ -74,7 +74,7 @@ public class Application implements Runnable{
             }
             swagger2MarkupConfig = new Swagger2MarkupConfigBuilder(config).build();
         }
-        Swagger2MarkupConverter.Builder converterBuilder = Swagger2MarkupConverter.from(URIUtils.create(input));
+        Swagger2MarkupConverter.Builder converterBuilder = Swagger2MarkupConverter.from(URIUtils.create(swaggerInput));
         if(swagger2MarkupConfig != null){
             converterBuilder.withConfig(swagger2MarkupConfig);
         }
