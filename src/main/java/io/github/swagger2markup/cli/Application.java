@@ -19,6 +19,7 @@ import io.airlift.airline.*;
 import io.github.swagger2markup.Swagger2MarkupConfig;
 import io.github.swagger2markup.Swagger2MarkupConverter;
 import io.github.swagger2markup.builder.Swagger2MarkupConfigBuilder;
+import io.github.swagger2markup.utils.URIUtils;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
@@ -27,7 +28,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import java.net.URI;
 import java.nio.file.Paths;
 
 @Command(name = "convert", description = "Converts a Swagger JSON or YAML file into Markup documents.")
@@ -74,7 +74,7 @@ public class Application implements Runnable{
             }
             swagger2MarkupConfig = new Swagger2MarkupConfigBuilder(config).build();
         }
-        Swagger2MarkupConverter.Builder converterBuilder = Swagger2MarkupConverter.from(URI.create(input));
+        Swagger2MarkupConverter.Builder converterBuilder = Swagger2MarkupConverter.from(URIUtils.create(input));
         if(swagger2MarkupConfig != null){
             converterBuilder.withConfig(swagger2MarkupConfig);
         }
