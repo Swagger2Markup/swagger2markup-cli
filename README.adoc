@@ -1,7 +1,7 @@
 = swagger2markup-cli
 Command line interface (CLI) for Swagger2Markup
 
-image:https://travis-ci.org/Swagger2Markup/swagger2markup-cli.svg?branch=master["Build Status", link="https://travis-ci.org/Swagger2Markup/swagger2markup-cli"]
+image:https://travis-ci.org/Swagger2Markup/swagger2markup-cli.svg?branch=master["Build Status", link="https://travis-ci.org/Swagger2Markup/swagger2markup-cli"] image:https://api.bintray.com/packages/swagger2markup/Maven/swagger2markup-cli/images/download.svg[link="https://bintray.com/swagger2markup/Maven/swagger2markup-cli/_latestVersion"]
 
 == Overview
 
