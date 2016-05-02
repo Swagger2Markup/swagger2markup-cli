@@ -38,8 +38,9 @@ bintray {
     publish = true //If version should be auto published after an upload
     publications = ['mavenJava']
     pkg {
-        repo = 'maven'
+        repo = 'Maven'
         name = 'swagger2markup-cli'
+        userOrg = 'swagger2markup'
         websiteUrl = 'https://github.com/Swagger2Markup/swagger2markup-cli'
         issueTrackerUrl = 'https://github.com/Swagger2Markup/swagger2markup-cli/issues'
         vcsUrl = 'https://github.com/Swagger2Markup/swagger2markup-cli.git'

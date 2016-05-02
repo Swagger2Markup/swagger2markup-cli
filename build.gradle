@@ -7,14 +7,14 @@ buildscript {
     }
     dependencies {
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.0.0"
         //classpath "com.gradle.publish:plugin-publish-plugin:0.9.0"
     }
 }
 
 group 'io.github.swagger2markup'
-version '1.0.0-SNAPSHOT'
+version '1.0.0'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
@@ -37,7 +37,7 @@ repositories {
 }
 
 dependencies {
-    compile ("io.github.swagger2markup:swagger2markup:1.0.0-SNAPSHOT")
+    compile ("io.github.swagger2markup:swagger2markup:1.0.0")
     compile 'io.airlift:airline:0.7'
     compile 'ch.qos.logback:logback-classic:1.1.2'
     testCompile 'org.assertj:assertj-core:3.4.0'
