@@ -1,0 +1,11 @@
+= Release Notes
+
+== Version 1.0.0
+* Updated Swagger2Markup dependency to 1.0.0
+
+=== Version 1.0.1
+* Updated Swagger2Markup dependency from 1.0.0 to 1.0.1
+
+== Version 1.1.0
+* Updated Swagger2Markup dependency from 1.0.1 to 1.1.0
+
