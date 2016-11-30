@@ -10,7 +10,7 @@ It converts a Swagger JSON or YAML file into several AsciiDoc or GitHub Flavored
 
 == Reference documentation
 
-The documentation can be found at http://swagger2markup.github.io/swagger2markup/1.1.0/[Reference documentation]
+The documentation can be found at https://github.com/Swagger2Markup/swagger2markup#reference-documentation[Reference documentation]
 
 == License
 
