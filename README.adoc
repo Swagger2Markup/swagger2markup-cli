@@ -8,6 +8,14 @@ image:https://travis-ci.org/Swagger2Markup/swagger2markup-cli.svg?branch=master[
 This is a CLI for https://github.com/Swagger2Markup/swagger2markup[Swagger2Markup].
 It converts a Swagger JSON or YAML file into several AsciiDoc or GitHub Flavored Markdown documents which can be combined with hand-written documentation. The Swagger source file can be located locally or remotely via HTTP. Swagger2Markup supports the Swagger 1.2 and 2.0 specification.
 
+== Quick usage
+You can clone and build the jar, then use this CLI to generate asciidocs.
+    
+    gradle assemble
+    java -jar ./build/libs/swagger2markup-cli-X.X.X.jar convert -i the_swagger_file.json -d /the/path/to/output
+
+That's all! Then you can checkout http://asciidoctor.org/, find your way to to play with asciidocs.
+
 == Reference documentation
 
 The documentation can be found at https://github.com/Swagger2Markup/swagger2markup#reference-documentation[Reference documentation]
