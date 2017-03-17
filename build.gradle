@@ -63,3 +63,8 @@ artifacts {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.12'
 }
+
+task runJar(dependsOn:jar) << {
+    String swaggerInput = file("src/test/resources/swagger_petstore.yaml").getAbsolutePath()
+    javaexec { main="-jar"; args = [jar.archivePath, 'convert', '-i', "${swaggerInput}", '-d', "${buildDir}"]}
+}
