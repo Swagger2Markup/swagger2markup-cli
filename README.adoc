@@ -14,6 +14,11 @@ You can clone and build the jar, then use this CLI to generate asciidocs.
     gradle assemble
     java -jar ./build/libs/swagger2markup-cli-X.X.X.jar convert -i the_swagger_file.json -d /the/path/to/output
 
+Mac users can use https://brew.sh[Homebrew] to install the Swagger2Markup CLI:
+
+    brew install swagger2markup-cli
+    swagger2markup convert -i the_swagger_file.json -d /the/path/to/output
+
 That's all! Then you can checkout http://asciidoctor.org/, find your way to to play with asciidocs.
 
 == Reference documentation
